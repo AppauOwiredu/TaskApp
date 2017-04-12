@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TaskRequest;
+use App\Task;
 use Illuminate\Http\Request;
+use Session;
 
 class TaskController extends Controller
 {
@@ -25,6 +28,7 @@ class TaskController extends Controller
 
         }
 
+
     }
 
     /**
@@ -35,7 +39,7 @@ class TaskController extends Controller
     public function create()
     {
         //
-         Session::flash('info',' Add a task');
+        Session::flash('info',' Add a task');
 
         return view('add');
     }
@@ -46,10 +50,10 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TaskRequest $request)
     {
         //
-        //        $store = new Task();
+//        $store = new Task();
 //        $store->name = $request->name;
 //        $store->status = $request->status;
 //        $store->save();
@@ -94,7 +98,7 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TaskRequest $request, $id)
     {
         //
         Task::find($id)->update($request->all());
